@@ -1,0 +1,29 @@
+{
+  "competitor_fields": [
+    {"key": "features", "label": "核心功能", "required": true},
+    {"key": "pricing", "label": "定价信息", "required": true},
+    {"key": "personas", "label": "用户画像", "required": true},
+    {"key": "swot", "label": "SWOT 分析", "required": true}
+  ],
+  "evidence_topics": ["feature", "pricing", "persona", "review", "other"],
+  "topic_to_field": {
+    "feature": "features",
+    "pricing": "pricing",
+    "persona": "personas",
+    "review": "swot"
+  },
+  "field_to_topic": {
+    "features": "feature",
+    "pricing": "pricing",
+    "personas": "persona",
+    "swot": "review"
+  },
+  "swot_quadrants": [
+    {"key": "strengths", "label": "优势"},
+    {"key": "weaknesses", "label": "劣势"},
+    {"key": "opportunities", "label": "机会"},
+    {"key": "threats", "label": "威胁"}
+  ],
+  "writer_sections": ["features", "pricing", "personas", "swot"],
+  "qa_required_fields": ["features", "pricing", "personas"]
+}

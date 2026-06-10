@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# 凭据 (重要!)
+.env
+.env.local
+
+# 运行产物
+data/output/
+data/*.sqlite
+
+# IDE
+.vscode/
+.idea/

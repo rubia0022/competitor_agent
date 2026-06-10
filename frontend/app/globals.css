@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: #0b0b20;
+  color: #e6e9f5;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+.glass {
+  background: rgba(20, 28, 56, 0.55);
+  border: 1px solid rgba(160, 180, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+}
+
+.chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chip-ok  { background: rgba(72, 187, 120, 0.18); color: #6cf3a5; }
+.chip-warn { background: rgba(255, 170, 80, 0.18); color: #ffd28a; }
+.chip-err  { background: rgba(255, 95, 95, 0.18); color: #ff9494; }
+.chip-info { background: rgba(95, 145, 255, 0.18); color: #9bbcff; }
+.chip-muted { background: rgba(180, 195, 220, 0.10); color: #c8d2e8; }
+
+.scroll-y { overflow-y: auto; }
+.scroll-y::-webkit-scrollbar { width: 6px; }
+.scroll-y::-webkit-scrollbar-thumb { background: rgba(160,180,255,0.25); border-radius:3px; }
+
+pre code { font-family: "SF Mono", Menlo, Consolas, monospace; }
+
+.mermaid svg { max-width: 100% !important; height: auto !important; }
