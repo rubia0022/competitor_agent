@@ -30,6 +30,8 @@ type TraceRow = {
   created_at: string;
 };
 
+type ExpandedTraceSet = Set<number>;
+
 type ReplayData = {
   stats: {
     total_messages: number;
@@ -83,7 +85,9 @@ export default function Home() {
   const [report, setReport] = useState<ReportData | null>(null);
   const [traces, setTraces] = useState<TraceRow[]>([]);
   const [creating, setCreating] = useState(false);
-  const [expandedTraces, setExpandedTraces] = useState<Set<number>>(new Set());
+  const [expandedTraces, setExpandedTraces] = useState<ExpandedTraceSet>(
+    new Set()
+  );
   const [schemaJson, setSchemaJson] = useState<string>("");
   const [schemaOpen, setSchemaOpen] = useState(false);
   const [schemaSaving, setSchemaSaving] = useState(false);
@@ -604,10 +608,10 @@ export default function Home() {
           )}
         </h2>
         <div className="grid grid-cols-2 gap-1 mb-3 text-[10px]">
-          {Object.entries(traceStats.byAgent).map(([a], c) => (
+          {Object.entries(traceStats.byAgent).map(([a, s]) => (
             <div key={a} className="bg-black/20 rounded px-2 py-1">
               <div className={agentColor(a)}>{a}</div>
-              <div className="text-lg font-semibold mt-1">{c}</div>
+              <div className="text-lg font-semibold mt-1">{s.count}</div>
             </div>
           ))}
         </div>
@@ -621,17 +625,17 @@ export default function Home() {
                 decisionInfo = JSON.parse(t.output_payload);
               } catch {}
             }
+            const rowBg =
+              t.status === "err"
+                ? "border-red-400/30 bg-red-900/20 hover:bg-red-900/30"
+                : isDecision
+                ? "border-indigo-400/30 bg-indigo-900/15 hover:bg-indigo-900/25"
+                : "border-white/5 bg-black/20 hover:bg-black/30";
             return (
               <li key={t.id} className="mt-1">
                 <div
                   onClick={() => toggleTrace(t.id)}
-                  className="text-[11px] p-2 rounded border cursor-pointer transition ${
-                    t.status === "err"
-                      ? "border-red-400/30 bg-red-900/20 hover:bg-red-900/30"
-                      : isDecision
-                      ? "border-indigo-400/30 bg-indigo-900/15 hover:bg-indigo-900/25"
-                      : "border-white/5 bg-black/20 hover:bg-black/30"
-                  }"
+                  className={`text-[11px] p-2 rounded border cursor-pointer transition ${rowBg}`}
                 >
                   <div className="flex justify-between items-center">
                     <span className={agentColor(t.agent)}>{t.agent}</span>
@@ -648,7 +652,9 @@ export default function Home() {
                       <div className="opacity-60"> · {decisionInfo.reason}</div>
                     </div>
                   )}
-                  <div className="opacity-70 mt-1 ${isExpanded ? "" : "line-clamp-2"}">
+                  <div
+                    className={`opacity-70 mt-1 ${isExpanded ? "" : "line-clamp-2"}`}
+                  >
                     {t.output_payload || "（无输出）"}
                   </div>
                 </div>
