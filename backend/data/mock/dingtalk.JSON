@@ -1,0 +1,30 @@
+[
+  {
+    "topic": "feature",
+    "content": "钉钉：提供即时通讯、审批、考勤等企业协同与管理能力（演示用离线证据）",
+    "source_url": "https://www.dingtalk.com/",
+    "fetched_at": "2026-06-10T00:00:00",
+    "confidence": 0.85
+  },
+  {
+    "topic": "pricing",
+    "content": "钉钉：提供基础功能与增值服务，具体计费以官方说明为准（演示用离线证据）",
+    "source_url": "https://www.dingtalk.com/",
+    "fetched_at": "2026-06-10T00:00:00",
+    "confidence": 0.75
+  },
+  {
+    "topic": "persona",
+    "content": "典型用户画像：有审批、考勤、流程需求的中小企业管理者与 HR（演示用离线证据）",
+    "source_url": "https://www.dingtalk.com/",
+    "fetched_at": "2026-06-10T00:00:00",
+    "confidence": 0.70
+  },
+  {
+    "topic": "review",
+    "content": "使用反馈：流程与管理能力较强，但个性化配置需要一定学习成本（演示用离线证据）",
+    "source_url": "https://www.dingtalk.com/",
+    "fetched_at": "2026-06-10T00:00:00",
+    "confidence": 0.65
+  }
+]

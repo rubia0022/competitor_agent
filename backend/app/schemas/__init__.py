@@ -1,20 +1,27 @@
-# schemas/__init__.py
-from .schema_def import (
-    CompetitorAnalysis,
-    CompetitorRequest,
+from .knowledge import (
+    Citation,
+    ClaimWithCitation,
+    Competitor,
     CompetitorReport,
-    IndustryInfo,
+    FeatureNode,
+    Persona,
+    PricingPlan,
     RawEvidence,
-    AgentMessage,
-    ReplayStats,
+    SWOT,
 )
+from .messages import AgentMessage, Issue, QAReport
 
 __all__ = [
-    "CompetitorAnalysis",
-    "CompetitorRequest",
-    "CompetitorReport",
-    "IndustryInfo",
-    "RawEvidence",
     "AgentMessage",
-    "ReplayStats",
+    "Citation",
+    "ClaimWithCitation",
+    "Competitor",
+    "CompetitorReport",
+    "FeatureNode",
+    "Issue",
+    "Persona",
+    "PricingPlan",
+    "QAReport",
+    "RawEvidence",
+    "SWOT",
 ]

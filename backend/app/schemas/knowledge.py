@@ -5,9 +5,23 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import List, Literal, Optional
+from typing import List
 
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field
+
+
+def _list_min_constraint(min_n: int) -> dict:
+    try:
+        from pydantic.version import VERSION as _V
+    except Exception:
+        from pydantic import __version__ as _V  # type: ignore
+    major = int(str(_V).split(".", 1)[0])
+    if major >= 2:
+        return {"min_length": min_n}
+    return {"min_items": min_n}
+
+
+_CITATIONS_MIN_1 = _list_min_constraint(1)
 
 
 class Citation(BaseModel):
@@ -23,29 +37,32 @@ class FeatureNode(BaseModel):
     name: str
     description: str = ""
     children: List["FeatureNode"] = Field(default_factory=list)
-    citations: List[Citation] = Field(..., min_length=1)
+    citations: List[Citation] = Field(..., **_CITATIONS_MIN_1)
 
 
-FeatureNode.model_rebuild()
+if hasattr(FeatureNode, "model_rebuild"):
+    FeatureNode.model_rebuild()
+else:
+    FeatureNode.update_forward_refs()
 
 
 class PricingPlan(BaseModel):
     tier_name: str
     price: str = Field(..., description="字符串以兼容‘联系销售’等非数值情形")
     features_included: List[str] = Field(default_factory=list)
-    citations: List[Citation] = Field(..., min_length=1)
+    citations: List[Citation] = Field(..., **_CITATIONS_MIN_1)
 
 
 class Persona(BaseModel):
     segment: str = Field(..., description="用户画像段，如‘中大型企业 HR’")
     pain_points: List[str] = Field(default_factory=list)
-    citations: List[Citation] = Field(..., min_length=1)
+    citations: List[Citation] = Field(..., **_CITATIONS_MIN_1)
 
 
 class ClaimWithCitation(BaseModel):
     """一条带引用的结论，用于 SWOT。"""
     claim: str
-    citations: List[Citation] = Field(..., min_length=1)
+    citations: List[Citation] = Field(..., **_CITATIONS_MIN_1)
 
 
 class SWOT(BaseModel):

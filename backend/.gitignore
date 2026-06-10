@@ -15,3 +15,9 @@ data/*.sqlite
 # IDE
 .vscode/
 .idea/
+
+node_modules/
+.next/
+dist/
+build/
+*.log
